@@ -1,0 +1,563 @@
+# ═══════════════════════════════════════════════════════════
+# HomeSense Neon-Glass — Dashboard Card Examples
+#
+# Required HACS integrations:
+#   - button-card        → https://github.com/custom-cards/button-card
+#   - stack-in-card      → https://github.com/custom-cards/stack-in-card
+#   - card-mod           → https://github.com/thomasloven/lovelace-card-mod
+#   - custom:slider-entity-row  → https://github.com/thomasloven/lovelace-slider-entity-row
+#   - layout-card        → https://github.com/thomasloven/lovelace-layout-card
+#
+# Theme must be selected: Settings → Dashboards → Theme → neon-glass
+# ═══════════════════════════════════════════════════════════
+
+
+# ── GLASS CARD TEMPLATE ──────────────────────────────────
+# Reusable template for all glassmorphism cards
+# Add to your dashboard's raw config under "button_card_templates"
+button_card_templates:
+  neon_glass_base:
+    styles:
+      card:
+        - background: rgba(26, 33, 31, 0.70)
+        - backdrop-filter: blur(24px)
+        - -webkit-backdrop-filter: blur(24px)
+        - border: 1px solid rgba(60, 74, 70, 0.30)
+        - border-radius: 12px
+        - box-shadow: 0 0 15px rgba(57, 241, 219, 0.06)
+        - padding: 16px
+        - transition: all 300ms ease
+        - color: "#dde4e1"
+      custom_fields:
+        label_upper:
+          - font-size: 0.75rem
+          - font-weight: 600
+          - letter-spacing: 0.05em
+          - text-transform: uppercase
+          - color: "#bacac5"
+        value:
+          - font-size: 1.875rem
+          - font-weight: 600
+          - color: "#dde4e1"
+
+  neon_glass_active:
+    template: neon_glass_base
+    styles:
+      card:
+        - border: 1px solid rgba(87, 241, 219, 0.20)
+        - box-shadow: 0 0 15px rgba(87, 241, 219, 0.15),
+                      inset 0 0 15px rgba(87, 241, 219, 0.05)
+        - position: relative
+        - overflow: hidden
+      icon:
+        - color: "#57f1db"
+        - filter: drop-shadow(0 0 8px rgba(87, 241, 219, 0.80))
+      custom_fields:
+        value:
+          - color: "#57f1db"
+
+  neon_glass_secondary:
+    template: neon_glass_base
+    styles:
+      card:
+        - border: 1px solid rgba(189, 194, 255, 0.20)
+        - box-shadow: 0 0 15px rgba(189, 194, 255, 0.10)
+      icon:
+        - color: "#bdc2ff"
+        - filter: drop-shadow(0 0 8px rgba(189, 194, 255, 0.60))
+      custom_fields:
+        value:
+          - color: "#bdc2ff"
+
+  neon_glass_tertiary:
+    template: neon_glass_base
+    styles:
+      card:
+        - border: 1px solid rgba(234, 208, 255, 0.20)
+        - box-shadow: 0 0 15px rgba(234, 208, 255, 0.10)
+      icon:
+        - color: "#ead0ff"
+        - filter: drop-shadow(0 0 8px rgba(234, 208, 255, 0.60))
+      custom_fields:
+        value:
+          - color: "#ead0ff"
+
+  neon_glass_inactive:
+    template: neon_glass_base
+    styles:
+      card:
+        - background: rgba(9, 16, 14, 0.50)
+        - border: 1px solid rgba(60, 74, 70, 0.15)
+        - box-shadow: none
+        - opacity: 0.70
+      icon:
+        - color: "#859490"
+      custom_fields:
+        value:
+          - color: "#859490"
+
+
+# ═══════════════════════════════════════════════════════════
+# STATUS CARDS
+# ═══════════════════════════════════════════════════════════
+
+# ── Temperature Sensor Card ───────────────────────────────
+- type: custom:button-card
+  entity: sensor.living_room_temperature
+  template: neon_glass_base
+  icon: mdi:thermostat
+  name: "Living Room"
+  show_name: true
+  show_state: true
+  show_icon: true
+  styles:
+    icon:
+      - color: "#bdc2ff"
+    card:
+      - height: 130px
+  custom_fields:
+    status: |
+      [[[
+        return `Cooling to 70°`;
+      ]]]
+
+# ── Humidity Sensor Card ─────────────────────────────────
+- type: custom:button-card
+  entity: sensor.master_bath_humidity
+  template: neon_glass_base
+  icon: mdi:water-drop
+  name: "Master Bath"
+  show_name: true
+  show_state: true
+  show_icon: true
+  styles:
+    icon:
+      - color: "#57f1db"
+    card:
+      - height: 130px
+  custom_fields:
+    status: |
+      [[[
+        if (parseFloat(entity.state) >= 40 && parseFloat(entity.state) <= 60)
+          return `<span style="color: #57f1db">Optimal</span>`;
+        return `<span style="color: #ffb4ab">Check</span>`;
+      ]]]
+
+# ── Active Light Card (Neon Glow) ─────────────────────────
+- type: custom:button-card
+  entity: light.kitchen_island
+  template: neon_glass_active
+  icon: mdi:lightbulb
+  name: "Kitchen Island"
+  show_name: true
+  show_state: true
+  show_icon: true
+  tap_action:
+    action: toggle
+  hold_action:
+    action: more-info
+  styles:
+    card:
+      - height: 130px
+  custom_fields:
+    brightness: |
+      [[[
+        if (entity.state === 'on') {
+          const attrs = entity.attributes;
+          if (attrs.brightness) {
+            const pct = Math.round(attrs.brightness / 255 * 100);
+            return `<span style="color: #bacac5; font-size: 0.875rem">${pct}% Brightness</span>`;
+          }
+        }
+        return '';
+      ]]]
+
+# ── Inactive Device Card (Dimmed) ─────────────────────────
+- type: custom:button-card
+  entity: light.patio
+  template: neon_glass_inactive
+  icon: mdi:lightbulb-outline
+  name: "Patio"
+  show_name: true
+  show_state: true
+  show_icon: true
+  tap_action:
+    action: toggle
+  hold_action:
+    action: more-info
+  styles:
+    card:
+      - height: 130px
+
+
+# ═══════════════════════════════════════════════════════════
+# CONTROL WIDGETS
+# ═══════════════════════════════════════════════════════════
+
+# ── Lighting Slider Card ──────────────────────────────────
+- type: custom:stack-in-card
+  card_mod:
+    style: |
+      ha-card {
+        background: rgba(26, 33, 31, 0.70) !important;
+        backdrop-filter: blur(24px) !important;
+        -webkit-backdrop-filter: blur(24px) !important;
+        border: 1px solid rgba(60, 74, 70, 0.30) !important;
+        border-radius: 12px !important;
+        box-shadow: 0 0 15px rgba(57, 241, 219, 0.06) !important;
+        padding: 24px !important;
+      }
+  cards:
+    - type: custom:button-card
+      name: LIGHTING CONTROLS
+      show_icon: false
+      show_state: false
+      tap_action:
+        action: none
+      styles:
+        card:
+          - background: none
+          - box-shadow: none
+          - border: none
+          - padding: 0
+        name:
+          - font-size: 0.75rem
+          - font-weight: 600
+          - letter-spacing: 0.05em
+          - text-transform: uppercase
+          - color: "#bacac5"
+          - margin-bottom: 16px
+    - type: custom:slider-entity-row
+      entity: light.main_lights
+      name: Main Lights
+      full_row: true
+      card_mod:
+        style: |
+          .slider {
+            --paper-slider-active-color: #57f1db !important;
+            --paper-slider-container-color: #2f3634 !important;
+            --paper-slider-knob-color: #57f1db !important;
+            --paper-slider-pin-color: #57f1db !important;
+            box-shadow: 0 0 10px rgba(87, 241, 219, 0.50);
+            border-radius: 9999px;
+          }
+          .slider-container {
+            --paper-slider-secondary-color: rgba(87, 241, 219, 0.30);
+          }
+          .state {
+            color: #57f1db !important;
+            font-size: 0.875rem;
+          }
+          .name {
+            color: #dde4e1 !important;
+            font-size: 0.875rem;
+          }
+    - type: custom:slider-entity-row
+      entity: light.accent_lights
+      name: Accent Lights
+      full_row: true
+      card_mod:
+        style: |
+          .slider {
+            --paper-slider-active-color: #bdc2ff !important;
+            --paper-slider-container-color: #2f3634 !important;
+            --paper-slider-knob-color: #bdc2ff !important;
+            --paper-slider-pin-color: #bdc2ff !important;
+            box-shadow: 0 0 10px rgba(189, 194, 255, 0.50);
+            border-radius: 9999px;
+          }
+          .state {
+            color: #bdc2ff !important;
+            font-size: 0.875rem;
+          }
+          .name {
+            color: #dde4e1 !important;
+            font-size: 0.875rem;
+          }
+
+
+# ── Quick Actions Card (Toggles) ──────────────────────────
+- type: custom:stack-in-card
+  card_mod:
+    style: |
+      ha-card {
+        background: rgba(26, 33, 31, 0.70) !important;
+        backdrop-filter: blur(24px) !important;
+        -webkit-backdrop-filter: blur(24px) !important;
+        border: 1px solid rgba(60, 74, 70, 0.30) !important;
+        border-radius: 12px !important;
+        box-shadow: 0 0 15px rgba(57, 241, 219, 0.06) !important;
+        padding: 24px !important;
+      }
+  cards:
+    - type: custom:button-card
+      name: QUICK ACTIONS
+      show_icon: false
+      show_state: false
+      tap_action:
+        action: none
+      styles:
+        card:
+          - background: none
+          - box-shadow: none
+          - border: none
+          - padding: 0
+        name:
+          - font-size: 0.75rem
+          - font-weight: 600
+          - letter-spacing: 0.05em
+          - text-transform: uppercase
+          - color: "#bacac5"
+          - margin-bottom: 16px
+    # Night Mode Toggle — Tertiary (violet) accent
+    - type: custom:button-card
+      entity: input_boolean.night_mode
+      icon: mdi:nightlight
+      name: Night Mode
+      show_name: true
+      show_state: false
+      tap_action:
+        action: toggle
+      styles:
+        card:
+          - background: rgba(36, 43, 42, 0.80)
+          - border-radius: 8px
+          - border: 1px solid rgba(60, 74, 70, 0.20)
+          - padding: 12px
+          - box-shadow: none
+          - margin-bottom: 12px
+        icon:
+          - color: "#ead0ff"
+          - width: 24px
+        name:
+          - color: "#dde4e1"
+          - font-size: 0.875rem
+          - font-weight: 500
+        custom_fields:
+          toggle:
+            - justify-self: end
+      custom_fields:
+        toggle: |
+          [[[
+            const isOn = entity.state === 'on';
+            const bgColor = isOn ? 'rgba(234, 208, 255, 0.20)' : 'rgba(47, 54, 52, 0.80)';
+            const dotColor = isOn ? '#ead0ff' : '#859490';
+            const dotShadow = isOn ? '0 0 8px rgba(234, 208, 255, 0.60)' : 'none';
+            const dotPos = isOn ? 'right: 4px' : 'left: 4px';
+            const borderColor = isOn ? 'rgba(234, 208, 255, 0.50)' : 'transparent';
+            return `
+              <div style="width:40px;height:20px;background:${bgColor};border-radius:9999px;position:relative;border:1px solid ${borderColor}">
+                <div style="position:absolute;top:2px;${dotPos};width:16px;height:16px;background:${dotColor};border-radius:50%;box-shadow:${dotShadow};transition:all 300ms ease"></div>
+              </div>
+            `;
+          ]]]
+
+    # Away Mode Toggle — Inactive (dimmed)
+    - type: custom:button-card
+      entity: input_boolean.away_mode
+      icon: mdi:ac_unit
+      name: Away Mode
+      show_name: true
+      show_state: false
+      tap_action:
+        action: toggle
+      styles:
+        card:
+          - background: rgba(22, 29, 27, 0.80)
+          - border-radius: 8px
+          - border: 1px solid rgba(60, 74, 70, 0.10)
+          - padding: 12px
+          - box-shadow: none
+          - margin-bottom: 16px
+        icon:
+          - color: "#859490"
+          - width: 24px
+        name:
+          - color: "#859490"
+          - font-size: 0.875rem
+          - font-weight: 500
+      custom_fields:
+        toggle: |
+          [[[
+            const isOn = entity.state === 'on';
+            const bgColor = isOn ? 'rgba(87, 241, 219, 0.20)' : 'rgba(47, 54, 52, 0.80)';
+            const dotColor = isOn ? '#57f1db' : '#859490';
+            const dotShadow = isOn ? '0 0 8px rgba(87, 241, 219, 0.80)' : 'none';
+            const dotPos = isOn ? 'right: 4px' : 'left: 4px';
+            const borderColor = isOn ? 'rgba(87, 241, 219, 0.50)' : 'transparent';
+            return `
+              <div style="width:40px;height:20px;background:${bgColor};border-radius:9999px;position:relative;border:1px solid ${borderColor}">
+                <div style="position:absolute;top:2px;${dotPos};width:16px;height:16px;background:${dotColor};border-radius:50%;box-shadow:${dotShadow};transition:all 300ms ease"></div>
+              </div>
+            `;
+          ]]]
+
+    # Action Button — Unlock Front Door
+    - type: custom:button-card
+      entity: lock.front_door
+      icon: mdi:lock-open-variant
+      name: Unlock Front Door
+      show_icon: true
+      show_name: true
+      show_state: false
+      tap_action:
+        action: call-service
+        service: lock.unlock
+        service_data:
+          entity_id: lock.front_door
+      styles:
+        card:
+          - background: rgba(87, 241, 219, 0.10)
+          - border: 1px solid rgba(87, 241, 219, 0.30)
+          - border-radius: 8px
+          - padding: 12px
+          - box-shadow: none
+          - transition: all 300ms ease
+        icon:
+          - color: "#57f1db"
+          - width: 18px
+        name:
+          - color: "#57f1db"
+          - font-size: 0.75rem
+          - font-weight: 600
+          - letter-spacing: 0.05em
+          - text-transform: uppercase
+      state:
+        - value: unlocked
+          icon: mdi:lock-open
+          name: Lock Front Door
+          styles:
+            card:
+              - background: rgba(255, 180, 171, 0.10)
+              - border: 1px solid rgba(255, 180, 171, 0.30)
+            icon:
+              - color: "#ffb4ab"
+            name:
+              - color: "#ffb4ab"
+          tap_action:
+            action: call-service
+            service: lock.lock
+            service_data:
+              entity_id: lock.front_door
+
+
+# ═══════════════════════════════════════════════════════════
+# CLIMATE DIAL (requires custom integration)
+# ═══════════════════════════════════════════════════════════
+# For the circular climate control, use one of these options:
+#
+# Option A: custom:circular-slider (full circular control)
+#   HACS: https://github.com/thomasloven/lovelace-circular-slider
+#
+# Option B: custom:my-circular-slider
+#   HACS: https://github.com/jeroen320/my-circular-slider
+#
+# Option C: Simple badge-style thermostat (built-in)
+# ═══════════════════════════════════════════════════════════
+
+# ── Climate Card (circular slider approach) ────────────────
+- type: custom:stack-in-card
+  card_mod:
+    style: |
+      ha-card {
+        background: rgba(26, 33, 31, 0.70) !important;
+        backdrop-filter: blur(24px) !important;
+        -webkit-backdrop-filter: blur(24px) !important;
+        border: 1px solid rgba(60, 74, 70, 0.30) !important;
+        border-radius: 12px !important;
+        box-shadow: 0 0 15px rgba(57, 241, 219, 0.06) !important;
+        padding: 24px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+      }
+  cards:
+    - type: custom:button-card
+      name: CLIMATE DIAL
+      show_icon: false
+      show_state: false
+      tap_action:
+        action: none
+      styles:
+        card:
+          - background: none
+          - box-shadow: none
+          - border: none
+          - padding: 0
+          - width: 100%
+          - text-align: left
+        name:
+          - font-size: 0.75rem
+          - font-weight: 600
+          - letter-spacing: 0.05em
+          - text-transform: uppercase
+          - color: "#bacac5"
+          - margin-bottom: 24px
+    - type: custom:circular-slider
+      entity: climate.thermostat
+      min_value: 60
+      max_value: 85
+      step: 1
+      card_mod:
+        style: |
+          .circular-slider {
+            --cs-track-bg: #2f3634 !important;
+            --cs-fill-bg: #57f1db !important;
+            --cs-knob-bg: #57f1db !important;
+            --cs-knob-shadow: 0 0 8px rgba(87, 241, 219, 0.80) !important;
+            --cs-value-color: #dde4e1 !important;
+            --cs-label-color: #57f1db !important;
+            --cs-unit-color: #bacac5 !important;
+          }
+
+
+# ═══════════════════════════════════════════════════════════
+# FULL DASHBOARD LAYOUT EXAMPLE
+# ═══════════════════════════════════════════════════════════
+#
+# views:
+#   - title: Home
+#     theme: neon-glass
+#     type: custom:masonry-layout
+#     layout:
+#       max_cols: 4
+#       width: 300
+#     cards:
+#       # ── Status Cards Row ──
+#       - type: horizontal-stack
+#         cards:
+#           - type: custom:button-card
+#             entity: sensor.living_room_temperature
+#             template: neon_glass_base
+#             icon: mdi:thermostat
+#             name: "Living Room"
+#             ...
+#           - type: custom:button-card
+#             entity: sensor.master_bath_humidity
+#             template: neon_glass_base
+#             icon: mdi:water-drop
+#             name: "Master Bath"
+#             ...
+#           - type: custom:button-card
+#             entity: light.kitchen_island
+#             template: neon_glass_active
+#             icon: mdi:lightbulb
+#             name: "Kitchen Island"
+#             ...
+#           - type: custom:button-card
+#             entity: light.patio
+#             template: neon_glass_inactive
+#             icon: mdi:lightbulb-outline
+#             name: "Patio"
+#             ...
+#
+#       # ── Controls Row ──
+#       - type: horizontal-stack
+#         cards:
+#           - type: custom:stack-in-card
+#             ... # Lighting Controls
+#           - type: custom:stack-in-card
+#             ... # Climate Dial
+#           - type: custom:stack-in-card
+#             ... # Quick Actions

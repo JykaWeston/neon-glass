@@ -1,0 +1,306 @@
+# ═══════════════════════════════════════════════════════════
+# HomeSense Neon-Glass — Card-Mod CSS Snippets
+# Requires: card-mod (HACS)
+# Install: https://github.com/thomasloven/lovelace-card-mod
+#
+# Usage: Include these styles in your dashboard cards
+# via card-mod's `style:` block, or apply globally
+# using the `frontend` configuration in your
+# configuration.yaml
+# ═══════════════════════════════════════════════════════════
+
+
+# ── GLOBL CSS (frontend config) ──────────────────────────
+# Add to configuration.yaml:
+#
+# frontend:
+#   themes: !include_dir_merge_named themes
+#   extra_module_url:
+#     - /hacsfiles/lovelace-card-mod/card-mod.js
+#
+# Then add a "Custom: card-mod" dashboard card with type: custom:config-template-card
+# or apply styles globally via the dashboard raw config:
+#
+# neon-glass-globals: &neon-glass-globals
+#   style: |
+#     /* inject into ha-card */
+#     ha-card {
+#       background: rgba(26, 33, 31, 0.70) !important;
+#       backdrop-filter: blur(24px) !important;
+#       -webkit-backdrop-filter: blur(24px) !important;
+#       border: 1px solid rgba(60, 74, 70, 0.30) !important;
+#       border-radius: 12px !important;
+#       box-shadow: 0 0 15px rgba(57, 241, 219, 0.06) !important;
+#       transition: background 300ms ease, box-shadow 300ms ease !important;
+#     }
+#     ha-card:hover {
+#       background: rgba(36, 43, 42, 0.80) !important;
+#       box-shadow: 0 0 20px rgba(57, 241, 219, 0.10) !important;
+#     }
+
+
+# ── GLASS CARD ────────────────────────────────────────────
+# Base glassmorphism card style
+# Apply to any card via card-mod:
+glass-card: &glass-card
+  style: |
+    ha-card {
+      background: rgba(26, 33, 31, 0.70) !important;
+      backdrop-filter: blur(24px) !important;
+      -webkit-backdrop-filter: blur(24px) !important;
+      border: 1px solid rgba(60, 74, 70, 0.30) !important;
+      border-radius: 12px !important;
+      box-shadow: 0 0 15px rgba(57, 241, 219, 0.06) !important;
+      transition: background 300ms ease, box-shadow 300ms ease !important;
+      color: #dde4e1 !important;
+    }
+    ha-card:hover {
+      background: rgba(36, 43, 42, 0.80) !important;
+      box-shadow: 0 0 20px rgba(57, 241, 219, 0.10) !important;
+    }
+
+# ── ACTIVE GLOW CARD ─────────────────────────────────────
+# For active/on state cards — adds neon teal glow
+active-glow-card: &active-glow-card
+  style: |
+    ha-card {
+      background: rgba(26, 33, 31, 0.70) !important;
+      backdrop-filter: blur(24px) !important;
+      -webkit-backdrop-filter: blur(24px) !important;
+      border: 1px solid rgba(87, 241, 219, 0.20) !important;
+      border-radius: 12px !important;
+      box-shadow: 0 0 15px rgba(87, 241, 219, 0.15),
+                  inset 0 0 15px rgba(87, 241, 219, 0.05) !important;
+      color: #57f1db !important;
+      transition: all 300ms ease !important;
+      position: relative !important;
+      overflow: hidden !important;
+    }
+    ha-card::before {
+      content: '' !important;
+      position: absolute !important;
+      top: -20px !important;
+      right: -20px !important;
+      width: 80px !important;
+      height: 80px !important;
+      background: rgba(87, 241, 219, 0.10) !important;
+      border-radius: 50% !important;
+      filter: blur(30px) !important;
+      pointer-events: none !important;
+    }
+
+# ── INACTIVE CARD ─────────────────────────────────────────
+# For off/disabled state cards — dimmed and muted
+inactive-card: &inactive-card
+  style: |
+    ha-card {
+      background: rgba(9, 16, 14, 0.50) !important;
+      backdrop-filter: blur(24px) !important;
+      -webkit-backdrop-filter: blur(24px) !important;
+      border: 1px solid rgba(60, 74, 70, 0.15) !important;
+      border-radius: 12px !important;
+      box-shadow: none !important;
+      color: #859490 !important;
+      opacity: 0.70 !important;
+      transition: all 300ms ease !important;
+    }
+    .icon-state {
+      color: #859490 !important;
+    }
+
+# ── SECONDARY GLOW CARD ──────────────────────────────────
+# Indigo accent glow — for climate/security cards
+secondary-glow-card: &secondary-glow-card
+  style: |
+    ha-card {
+      background: rgba(26, 33, 31, 0.70) !important;
+      backdrop-filter: blur(24px) !important;
+      -webkit-backdrop-filter: blur(24px) !important;
+      border: 1px solid rgba(189, 194, 255, 0.20) !important;
+      border-radius: 12px !important;
+      box-shadow: 0 0 15px rgba(189, 194, 255, 0.10),
+                  inset 0 0 15px rgba(189, 194, 255, 0.03) !important;
+      color: #bdc2ff !important;
+      transition: all 300ms ease !important;
+      position: relative !important;
+      overflow: hidden !important;
+    }
+    ha-card::before {
+      content: '' !important;
+      position: absolute !important;
+      top: -20px !important;
+      right: -20px !important;
+      width: 80px !important;
+      height: 80px !important;
+      background: rgba(189, 194, 255, 0.10) !important;
+      border-radius: 50% !important;
+      filter: blur(30px) !important;
+      pointer-events: none !important;
+    }
+
+# ── TERTIARY GLOW CARD ────────────────────────────────────
+# Violet accent glow — for night mode / special modes
+tertiary-glow-card: &tertiary-glow-card
+  style: |
+    ha-card {
+      background: rgba(26, 33, 31, 0.70) !important;
+      backdrop-filter: blur(24px) !important;
+      -webkit-backdrop-filter: blur(24px) !important;
+      border: 1px solid rgba(234, 208, 255, 0.20) !important;
+      border-radius: 12px !important;
+      box-shadow: 0 0 15px rgba(234, 208, 255, 0.10),
+                  inset 0 0 15px rgba(234, 208, 255, 0.03) !important;
+      color: #ead0ff !important;
+      transition: all 300ms ease !important;
+      position: relative !important;
+      overflow: hidden !important;
+    }
+    ha-card::before {
+      content: '' !important;
+      position: absolute !important;
+      top: -20px !important;
+      right: -20px !important;
+      width: 80px !important;
+      height: 80px !important;
+      background: rgba(234, 208, 255, 0.10) !important;
+      border-radius: 50% !important;
+      filter: blur(30px) !important;
+      pointer-events: none !important;
+    }
+
+# ── ERROR CARD ─────────────────────────────────────────────
+# Red error/warning glow
+error-glow-card: &error-glow-card
+  style: |
+    ha-card {
+      background: rgba(26, 33, 31, 0.70) !important;
+      backdrop-filter: blur(24px) !important;
+      -webkit-backdrop-filter: blur(24px) !important;
+      border: 1px solid rgba(255, 180, 171, 0.30) !important;
+      border-radius: 12px !important;
+      box-shadow: 0 0 15px rgba(255, 180, 171, 0.15) !important;
+      color: #ffb4ab !important;
+      transition: all 300ms ease !important;
+    }
+
+# ── HEADER STYLING ────────────────────────────────────────
+# Apply via dashboard raw config or custom:config-template-card
+glass-header: &glass-header
+  style: |
+    .header {
+      background: rgba(14, 21, 19, 0.70) !important;
+      backdrop-filter: blur(40px) !important;
+      -webkit-backdrop-filter: blur(40px) !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.10) !important;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.30),
+                  0 0 20px rgba(57, 241, 219, 0.05) !important;
+    }
+
+# ── SIDEBAR STYLING ───────────────────────────────────────
+glass-sidebar: &glass-sidebar
+  style: |
+    .sidebar {
+      background: rgba(14, 21, 19, 0.80) !important;
+      backdrop-filter: blur(40px) !important;
+      -webkit-backdrop-filter: blur(40px) !important;
+      border-right: 1px solid rgba(60, 74, 70, 0.20) !important;
+    }
+    .sidebar .menu-item.active {
+      background: rgba(57, 241, 219, 0.10) !important;
+      border-left: 2px solid #57f1db !important;
+      padding-left: 14px !important;
+      box-shadow: 0 0 10px rgba(57, 241, 219, 0.10) !important;
+    }
+
+# ── TOGGLE SWITCH STYLING ─────────────────────────────────
+# Use inside custom:button-card for Night Mode style toggle
+neon-toggle-on: &neon-toggle-on
+  style: |
+    .mdc-switch .mdc-switch__track {
+      background: rgba(234, 208, 255, 0.20) !important;
+      border: 1px solid rgba(234, 208, 255, 0.50) !important;
+    }
+    .mdc-switch.mdc-switch--checked .mdc-switch__track {
+      background: rgba(87, 241, 219, 0.20) !important;
+      border: 1px solid rgba(87, 241, 219, 0.50) !important;
+    }
+    .mdc-switch .mdc-switch__thumb {
+      background: #859490 !important;
+    }
+    .mdc-switch.mdc-switch--checked .mdc-switch__thumb {
+      background: #57f1db !important;
+      box-shadow: 0 0 8px rgba(87, 241, 219, 0.80) !important;
+    }
+
+# ── BUTTON STYLES (for button-card) ───────────────────────
+# Neon action button — glassmorphic style
+neon-action-button: &neon-action-button
+  style: |
+    ha-card {
+      background: rgba(87, 241, 219, 0.10) !important;
+      border: 1px solid rgba(87, 241, 219, 0.30) !important;
+      border-radius: 12px !important;
+      color: #57f1db !important;
+      transition: all 300ms ease !important;
+    }
+    ha-card:hover {
+      background: rgba(87, 241, 219, 0.20) !important;
+      box-shadow: 0 0 20px rgba(87, 241, 219, 0.15) !important;
+    }
+
+# ── STATUS PILL (for custom badges) ────────────────────────
+status-pill-primary: &status-pill-primary
+  style: |
+    .status-pill {
+      background: rgba(87, 241, 219, 0.15) !important;
+      border: 1px solid rgba(87, 241, 219, 0.30) !important;
+      color: #57f1db !important;
+      border-radius: 9999px !important;
+      font-size: 0.75rem !important;
+      font-weight: 600 !important;
+      letter-spacing: 0.05em !important;
+      text-transform: uppercase !important;
+      padding: 2px 10px !important;
+    }
+
+status-pill-secondary: &status-pill-secondary
+  style: |
+    .status-pill {
+      background: rgba(189, 194, 255, 0.15) !important;
+      border: 1px solid rgba(189, 194, 255, 0.30) !important;
+      color: #bdc2ff !important;
+      border-radius: 9999px !important;
+      font-size: 0.75rem !important;
+      font-weight: 600 !important;
+      letter-spacing: 0.05em !important;
+      text-transform: uppercase !important;
+      padding: 2px 10px !important;
+    }
+
+status-pill-tertiary: &status-pill-tertiary
+  style: |
+    .status-pill {
+      background: rgba(234, 208, 255, 0.15) !important;
+      border: 1px solid rgba(234, 208, 255, 0.30) !important;
+      color: #ead0ff !important;
+      border-radius: 9999px !important;
+      font-size: 0.75rem !important;
+      font-weight: 600 !important;
+      letter-spacing: 0.05em !important;
+      text-transform: uppercase !important;
+      padding: 2px 10px !important;
+    }
+
+status-pill-error: &status-pill-error
+  style: |
+    .status-pill {
+      background: rgba(255, 180, 171, 0.15) !important;
+      border: 1px solid rgba(255, 180, 171, 0.30) !important;
+      color: #ffb4ab !important;
+      border-radius: 9999px !important;
+      font-size: 0.75rem !important;
+      font-weight: 600 !important;
+      letter-spacing: 0.05em !important;
+      text-transform: uppercase !important;
+      padding: 2px 10px !important;
+    }

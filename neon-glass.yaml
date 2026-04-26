@@ -1,0 +1,170 @@
+neon-glass:
+  # ═══════════════════════════════════════════════════════════
+  # HomeSense Neon-Glass Theme
+  # High-Tech Glassmorphism — Nocturnal Sanctuary
+  # ═══════════════════════════════════════════════════════════
+
+  # ── Primary & Accent ──
+  primary-color: "#57f1db"
+  accent-color: "#bdc2ff"
+  primary-text-color: "#dde4e1"
+  secondary-text-color: "#bacac5"
+  disabled-text-color: "#859490"
+
+  # ── Surfaces ──
+  primary-background-color: "#0e1513"
+  secondary-background-color: "#1a211f"
+  background-color-2: "#161d1b"
+  background-color-3: "#242b2a"
+  background-color-4: "#2f3634"
+
+  # ── Cards ──
+  card-background-color: "rgba(26, 33, 31, 0.70)"
+  card-border-color: "rgba(60, 74, 70, 0.30)"
+  card-border-radius: "12px"
+  card-box-shadow: "0 0 15px rgba(57, 241, 219, 0.06)"
+
+  # ── Divider & Outline ──
+  divider-color: "rgba(60, 74, 70, 0.30)"
+  border-color: "rgba(60, 74, 70, 0.30)"
+  outline-color: "#3c4a46"
+  outline-variant-color: "#859490"
+
+  # ── Header ──
+  header-background-color: "rgba(15, 21, 19, 0.70)"
+  header-height: "64px"
+  header-icon-color: "#bacac5"
+  header-text-color: "#dde4e1"
+
+  # ── Sidebar ──
+  sidebar-background-color: "rgba(14, 21, 19, 0.80)"
+  sidebar-icon-color: "#859490"
+  sidebar-text-color: "#bacac5"
+  sidebar-selected-background-color: "rgba(57, 241, 219, 0.10)"
+  sidebar-selected-icon-color: "#57f1db"
+  sidebar-selected-text-color: "#57f1db"
+
+  # ── States ──
+  state-active-color: "#57f1db"
+  state-inactive-color: "#859490"
+  state-icon-color: "#bacac5"
+  state-icon-active-color: "#57f1db"
+  state-icon-unavailable-color: "#859490"
+
+  # ── Sliders ──
+  slider-color: "#57f1db"
+  slider-track-color: "#2f3634"
+  slider-thumb-color: "#57f1db"
+  slider-bar-color: "#57f1db"
+  slider-secondary-color: "#2f3634"
+
+  # ── Toggles ──
+  toggle-button-color: "#ead0ff"
+  toggle-button-active-color: "#57f1db"
+  toggle-button-inactive-color: "#2f3634"
+
+  # ── Switches ──
+  switch-checked-color: "#57f1db"
+  switch-unchecked-color: "#2f3634"
+  switch-checked-track-color: "rgba(87, 241, 219, 0.30)"
+  switch-unchecked-track-color: "#2f3634"
+  switch-checked-button-color: "#57f1db"
+  switch-unchecked-button-color: "#859490"
+
+  # ── Input ──
+  input-background-color: "#1a211f"
+  input-border-color: "rgba(60, 74, 70, 0.30)"
+  input-icon-color: "#859490"
+  input-text-color: "#dde4e1"
+  input-fill-color: "#242b2a"
+  input-disabled-fill-color: "#161d1b"
+  input-ink-color: "#dde4e1"
+  input-label-ink-color: "#859490"
+  input-disabled-ink-color: "#859490"
+  input-idle-line-color: "#3c4a46"
+  input-hover-line-color: "#57f1db"
+  input-active-line-color: "#57f1db"
+  input-dropdown-icon-color: "#859490"
+
+  # ── Buttons ──
+  button-color: "#57f1db"
+  button-text-color: "#003731"
+  button-background: "rgba(87, 241, 219, 0.10)"
+  button-border-color: "rgba(87, 241, 219, 0.30)"
+
+  # ── Labels & Badges ──
+  label-badge-background-color: "rgba(87, 241, 219, 0.15)"
+  label-badge-text-color: "#57f1db"
+  label-badge-red: "#ffb4ab"
+  label-badge-green: "#57f1db"
+  label-badge-blue: "#bdc2ff"
+  label-badge-yellow: "#ead0ff"
+  label-badge-gray: "#2f3634"
+
+  # ── Paper Items ──
+  paper-item-icon-color: "#859490"
+  paper-item-icon-active-color: "#57f1db"
+  paper-item-body-color: "#dde4e1"
+  paper-item-body-secondary-color: "#bacac5"
+
+  # ── Tables ──
+  table-row-background-color: "#1a211f"
+  table-row-alternative-background-color: "#161d1b"
+  table-header-background-color: "#09100e"
+
+  # ── Dialog ──
+  dialog-background-color: "#1a211f"
+  dialog-border-radius: "12px"
+
+  # ── Dropdown ──
+  dropdown-background-color: "#1a211f"
+  dropdown-item-color: "#dde4e1"
+  dropdown-item-hover-color: "#57f1db"
+
+  # ── Error ──
+  error-color: "#ffb4ab"
+  error-state-color: "#ffb4ab"
+
+  # ── Warning ──
+  warning-color: "#ead0ff"
+
+  # ── Success ──
+  success-color: "#57f1db"
+
+  # ── Info ──
+  info-color: "#bdc2ff"
+
+  # ── Code ──
+  code-background-color: "#09100e"
+  code-text-color: "#57f1db"
+
+  # ── Misc ──
+  ha-card-border-radius: "12px"
+  ha-card-box-shadow: "0 0 15px rgba(57, 241, 219, 0.06)"
+  ha-card-background: "rgba(26, 33, 31, 0.70)"
+  ha-card-border-width: "1px"
+  ha-card-border-color: "rgba(60, 74, 70, 0.30)"
+
+  # ── Fonts ──
+  primary-font-family: "'Inter', sans-serif"
+  secondary-font-family: "'Inter', sans-serif"
+
+  # ── Scrollbar ──
+  scrollbar-thumb-color: "rgba(57, 241, 219, 0.20)"
+  scrollbar-track-color: "#09100e"
+
+  # ── Chip ──
+  chip-background-color: "rgba(26, 33, 31, 0.70)"
+  chip-border-color: "rgba(60, 74, 70, 0.30)"
+  chip-text-color: "#bacac5"
+  chip-active-background-color: "rgba(87, 241, 219, 0.15)"
+  chip-active-text-color: "#57f1db"
+
+  # ── Map ──
+  map-background-color: "#09100e"
+  map-darker-color: "#0e1513"
+
+  # ── Media Player ──
+  media-player-background-color: "#1a211f"
+  media-player-icon-color: "#57f1db"
+  media-player-active-icon-color: "#57f1db"

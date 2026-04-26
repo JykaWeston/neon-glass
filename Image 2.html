@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HomeSense UI Kit</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface": "#0e1513",
+                        "surface-dim": "#0e1513",
+                        "surface-bright": "#333b39",
+                        "surface-container-lowest": "#09100e",
+                        "surface-container-low": "#161d1b",
+                        "surface-container": "#1a211f",
+                        "surface-container-high": "#242b2a",
+                        "surface-container-highest": "#2f3634",
+                        "on-surface": "#dde4e1",
+                        "on-surface-variant": "#bacac5",
+                        "inverse-surface": "#dde4e1",
+                        "inverse-on-surface": "#2b3230",
+                        "outline": "#859490",
+                        "outline-variant": "#3c4a46",
+                        "surface-tint": "#3cddc7",
+                        "primary": "#57f1db",
+                        "on-primary": "#003731",
+                        "primary-container": "#2dd4bf",
+                        "on-primary-container": "#00574d",
+                        "inverse-primary": "#006b5f",
+                        "secondary": "#bdc2ff",
+                        "on-secondary": "#131e8c",
+                        "secondary-container": "#2f3aa3",
+                        "on-secondary-container": "#a8afff",
+                        "tertiary": "#ead0ff",
+                        "on-tertiary": "#490081",
+                        "tertiary-container": "#d7adff",
+                        "on-tertiary-container": "#682ca1",
+                        "error": "#ffb4ab",
+                        "on-error": "#690005",
+                        "error-container": "#93000a",
+                        "on-error-container": "#ffdad6",
+                        "primary-fixed": "#62fae3",
+                        "primary-fixed-dim": "#3cddc7",
+                        "on-primary-fixed": "#00201c",
+                        "on-primary-fixed-variant": "#005047",
+                        "secondary-fixed": "#e0e0ff",
+                        "secondary-fixed-dim": "#bdc2ff",
+                        "on-secondary-fixed": "#000767",
+                        "on-secondary-fixed-variant": "#2f3aa3",
+                        "tertiary-fixed": "#f0dbff",
+                        "tertiary-fixed-dim": "#ddb8ff",
+                        "on-tertiary-fixed": "#2c0051",
+                        "on-tertiary-fixed-variant": "#62259b",
+                        "background": "#0e1513",
+                        "on-background": "#dde4e1",
+                        "surface-variant": "#2f3634"
+                    },
+                    borderRadius: {
+                        "sm": "0.25rem",
+                        "DEFAULT": "0.5rem",
+                        "md": "0.75rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    fontFamily: {
+                        "headline": ["Inter", "sans-serif"],
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- Top Navigation (Shell suppressed for pure UI Kit gallery, but showing variant as requested) -->
+<header class="bg-slate-950/70 backdrop-blur-2xl text-teal-400 font-inter tracking-tight font-semibold docked full-width top-0 border-b border-white/10 shadow-2xl shadow-teal-900/20 fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 scale-95 active:scale-90 transition-transform">
+<div class="text-xl font-bold tracking-tighter text-teal-400 drop-shadow-[0_0_8px_rgba(45,212,191,0.5)]">HomeSense UI Kit</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-slate-400 hover:text-teal-400 hover:bg-white/5 transition-colors duration-300 p-2 rounded-full cursor-pointer" data-icon="search">search</span>
+<span class="material-symbols-outlined text-slate-400 hover:text-teal-400 hover:bg-white/5 transition-colors duration-300 p-2 rounded-full cursor-pointer" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-slate-400 hover:text-teal-400 hover:bg-white/5 transition-colors duration-300 p-2 rounded-full cursor-pointer" data-icon="settings">settings</span>
+</div>
+</header>
+<main class="pt-24 pb-12 px-6 max-w-7xl mx-auto space-y-16">
+<div class="mb-12">
+<h1 class="font-display text-4xl font-semibold tracking-tight text-on-surface mb-2">Design System Components</h1>
+<p class="font-body text-on-surface-variant text-lg">A visual reference for HomeSense UI elements in the Nocturnal Sanctuary style.</p>
+</div>
+<!-- 1. Status Cards -->
+<section>
+<h2 class="font-headline text-2xl font-medium tracking-tight text-primary mb-6 border-b border-outline-variant/30 pb-2">Status Cards</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Temperature Card -->
+<div class="bg-surface-container/70 backdrop-blur-xl border border-outline-variant/30 rounded-xl p-4 flex flex-col justify-between h-32 hover:bg-surface-container-high/80 transition-colors">
+<div class="flex justify-between items-start">
+<span class="font-label text-xs uppercase tracking-widest text-on-surface-variant">Living Room</span>
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">thermostat</span>
+</div>
+<div>
+<div class="font-display text-3xl font-semibold text-on-surface">72°</div>
+<div class="font-body text-sm text-secondary">Cooling to 70°</div>
+</div>
+</div>
+<!-- Humidity Card -->
+<div class="bg-surface-container/70 backdrop-blur-xl border border-outline-variant/30 rounded-xl p-4 flex flex-col justify-between h-32 hover:bg-surface-container-high/80 transition-colors">
+<div class="flex justify-between items-start">
+<span class="font-label text-xs uppercase tracking-widest text-on-surface-variant">Master Bath</span>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">water_drop</span>
+</div>
+<div>
+<div class="font-display text-3xl font-semibold text-on-surface">45%</div>
+<div class="font-body text-sm text-primary">Optimal</div>
+</div>
+</div>
+<!-- Active Device Card (Light) -->
+<div class="bg-surface-container/70 backdrop-blur-xl border border-outline-variant/30 rounded-xl p-4 flex flex-col justify-between h-32 shadow-[0_0_15px_rgba(45,212,191,0.15)] relative overflow-hidden">
+<div class="absolute top-0 right-0 w-24 h-24 bg-primary/10 rounded-full blur-2xl -mr-8 -mt-8 pointer-events-none"></div>
+<div class="flex justify-between items-start relative z-10">
+<span class="font-label text-xs uppercase tracking-widest text-on-surface-variant">Kitchen Island</span>
+<span class="material-symbols-outlined text-primary drop-shadow-[0_0_8px_rgba(87,241,219,0.8)]" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+</div>
+<div class="relative z-10">
+<div class="font-display text-3xl font-semibold text-primary">On</div>
+<div class="font-body text-sm text-on-surface-variant">80% Brightness</div>
+</div>
+</div>
+<!-- Inactive Device Card -->
+<div class="bg-surface-container-lowest/50 backdrop-blur-xl border border-outline-variant/20 rounded-xl p-4 flex flex-col justify-between h-32 opacity-70">
+<div class="flex justify-between items-start">
+<span class="font-label text-xs uppercase tracking-widest text-on-surface-variant">Patio</span>
+<span class="material-symbols-outlined text-on-surface-variant">lightbulb</span>
+</div>
+<div>
+<div class="font-display text-3xl font-semibold text-on-surface-variant">Off</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 2. Control Widgets -->
+<section>
+<h2 class="font-headline text-2xl font-medium tracking-tight text-primary mb-6 border-b border-outline-variant/30 pb-2">Control Widgets</h2>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Sliders -->
+<div class="bg-surface-container/70 backdrop-blur-xl border border-outline-variant/30 rounded-xl p-6 flex flex-col gap-6">
+<h3 class="font-label text-sm uppercase tracking-widest text-on-surface-variant mb-2">Lighting Controls</h3>
+<div>
+<div class="flex justify-between mb-2">
+<span class="font-body text-sm text-on-surface">Main Lights</span>
+<span class="font-body text-sm text-primary">85%</span>
+</div>
+<div class="h-2 w-full bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-primary shadow-[0_0_10px_rgba(87,241,219,0.5)] w-[85%] rounded-full"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span class="font-body text-sm text-on-surface">Accent Lights</span>
+<span class="font-body text-sm text-secondary">40%</span>
+</div>
+<div class="h-2 w-full bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-secondary shadow-[0_0_10px_rgba(189,194,255,0.5)] w-[40%] rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Circular Control (Mockup) -->
+<div class="bg-surface-container/70 backdrop-blur-xl border border-outline-variant/30 rounded-xl p-6 flex flex-col items-center justify-center">
+<h3 class="font-label text-sm uppercase tracking-widest text-on-surface-variant mb-6 w-full text-left">Climate Dial</h3>
+<div class="relative w-40 h-40 rounded-full border-4 border-surface-variant flex items-center justify-center before:content-[''] before:absolute before:inset-0 before:rounded-full before:border-4 before:border-transparent before:border-t-primary before:border-r-primary before:rotate-45">
+<div class="text-center">
+<div class="font-display text-4xl font-semibold text-on-surface">72°</div>
+<div class="font-label text-xs text-primary uppercase mt-1">Cooling</div>
+</div>
+<!-- Knob indicator -->
+<div class="absolute top-[10%] right-[10%] w-3 h-3 bg-primary rounded-full shadow-[0_0_8px_rgba(87,241,219,0.8)]"></div>
+</div>
+</div>
+<!-- Toggles & Action Buttons -->
+<div class="bg-surface-container/70 backdrop-blur-xl border border-outline-variant/30 rounded-xl p-6 flex flex-col gap-6">
+<h3 class="font-label text-sm uppercase tracking-widest text-on-surface-variant mb-2">Quick Actions</h3>
+<div class="flex items-center justify-between p-3 bg-surface-container-high rounded-lg border border-outline-variant/20">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-tertiary">nightlight</span>
+<span class="font-body text-sm font-medium text-on-surface">Night Mode</span>
+</div>
+<div class="w-10 h-5 bg-tertiary/20 rounded-full relative cursor-pointer border border-tertiary/50">
+<div class="absolute right-1 top-0.5 w-4 h-4 bg-tertiary rounded-full shadow-[0_0_8px_rgba(234,208,255,0.6)]"></div>
+</div>
+</div>
+<div class="flex items-center justify-between p-3 bg-surface-container-low rounded-lg border border-outline-variant/10">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">ac_unit</span>
+<span class="font-body text-sm font-medium text-on-surface-variant">Away Mode</span>
+</div>
+<div class="w-10 h-5 bg-surface-variant rounded-full relative cursor-pointer">
+<div class="absolute left-1 top-0.5 w-4 h-4 bg-outline rounded-full"></div>
+</div>
+</div>
+<!-- Action Button -->
+<button class="w-full py-3 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/30 rounded-lg font-label text-sm uppercase tracking-wider transition-colors duration-300 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" style="font-size: 18px;">lock_open</span>
+                        Unlock Front Door
+                    </button>
+</div>
+</div>
+</section>
+</main>
+</body></html>
