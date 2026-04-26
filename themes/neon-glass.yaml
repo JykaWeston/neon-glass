@@ -115,6 +115,8 @@ neon-glass:
   # ── Dialog ──
   dialog-background-color: "#1a211f"
   dialog-border-radius: "12px"
+  mdc-dialog-container-color: "#1a211f"
+  ha-dialog-surface-background-color: "#1a211f"
 
   # ── Dropdown ──
   dropdown-background-color: "#1a211f"
